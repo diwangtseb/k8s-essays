@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: code
-        image: diwangtseb-go-1.19:v2
+        image: diwangtseb-go-1.19:v3
         ports:
         - containerPort: 1001
         resources:

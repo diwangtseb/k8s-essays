@@ -10,7 +10,7 @@ import (
 var sevice_name = ""
 
 func init() {
-	rand.Seed(time.Second.Nanoseconds())
+	rand.Seed(time.Now().UnixNano())
 	r := rand.Int31n(100)
 	sevice_name = fmt.Sprintf("%d", r)
 }
