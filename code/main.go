@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"time"
@@ -16,15 +17,21 @@ func init() {
 }
 
 func main() {
-	u := &User{name: sevice_name}
+	u := &User{name: sevice_name, logger: log.Default()}
 	http.HandleFunc("/user", u.Get)
-	http.ListenAndServe(":1001", nil)
+	err := http.ListenAndServe(":1002", nil)
+	if err != nil {
+		panic(err)
+	}
 }
 
 type User struct {
-	name string
+	name   string
+	logger *log.Logger
 }
 
 func (uh *User) Get(rsp http.ResponseWriter, req *http.Request) {
-	rsp.Write([]byte(fmt.Sprintf("Hello Every Body! By %s", uh.name)))
+	msg := fmt.Sprintf("Hello Every Body! By %s", uh.name)
+	uh.logger.Println(msg)
+	rsp.Write([]byte(msg))
 }
