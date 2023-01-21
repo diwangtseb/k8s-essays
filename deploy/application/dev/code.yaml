@@ -18,7 +18,7 @@ spec:
       - name: code
         image: diwangtseb-go-1.19:v3
         ports:
-        - containerPort: 1001
+        - containerPort: 1002
         resources:
           limits:
             memory: "128Mi"
@@ -37,8 +37,8 @@ spec:
   ports:
   - name: code-service-port
     protocol: TCP
-    port: 1001
-    targetPort: 1001
+    port: 1002
+    targetPort: 1002
   type: LoadBalancer
 
   
