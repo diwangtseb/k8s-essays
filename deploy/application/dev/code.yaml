@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-deployment
+  labels:
+    app: code
+spec:
+  selector:
+    matchLabels:
+      app: code
+  replicas: 2 # 告知 Deployment 运行 2 个与该模板匹配的 Pod
+  template:
+    metadata:
+      labels:
+        app: code
+    spec:
+      containers:
+      - name: code
+        image: diwangtseb-go-1.19:v1
+        ports:
+        - containerPort: 1001
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "10m"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-service
+  labels:
+    app: code
+spec:
+  selector:
+    app: code
+  ports:
+  - name: code-service-port
+    protocol: TCP
+    port: 1001
+    targetPort: 1001
+  type: LoadBalancer
+
+  
