@@ -18,7 +18,7 @@ func init() {
 func main() {
 	u := &User{name: sevice_name}
 	http.HandleFunc("/user", u.Get)
-	http.ListenAndServe(":1002", nil)
+	http.ListenAndServe(":1001", nil)
 }
 
 type User struct {
